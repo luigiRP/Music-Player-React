@@ -1,54 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Songs from "./songs";
 
 //create your first component
 export function Home() {
+	// let songUrl = "https://assets.breatheco.de/apis/sound/".concat(track);
+
+	// let audio = document.querySelector("#track");
+	// let source = document.querySelector("#trackSource");
+	// source.src = songUrl;
+	// audio.load();
+	// audio.play();
+	const [track, setTrack] = useState([]);
+
+	useEffect(() => {
+		// Update the document title using the browser API
+		let arraysongs = [];
+
+		fetch("https://assets.breatheco.de/apis/sound/all")
+			.then(function(response) {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				return response.json();
+			})
+			.then(function(responseAsJson) {
+				responseAsJson["data/songs.json"].map(songDetails => {
+					arraysongs.push(songDetails);
+				});
+				// Do stuff with the JSON
+			})
+			.catch(function(error) {
+				console.log("Looks like there was a problem: \n", error);
+			});
+		setTrack(arraysongs);
+	}, []);
+	console.log(track);
 	return (
 		<div className="container-fluid">
 			<div className="row bar text-white justify-content-center p-3 font-weight-bold">
 				<h1>RICH'S MUSIC PLAYER</h1>
 			</div>
+			<audio id="track">
+				<source src="" type="audio/mpeg" id="trackSource" />
+			</audio>
 			<div className="row player text-white">
-				<ol className="container-fluid">
-					<div>
-						<Songs title="song1" number="1" />
-					</div>
-					<div>
-						<Songs title="song2" number="2" />
-					</div>
-					<div>
-						<Songs title="song3" number="3" />
-					</div>
-					<div>
-						<Songs title="song4" number="4" />
-					</div>
-					<div>
-						<Songs title="song5" number="5" />
-					</div>
-					<div>
-						<Songs title="song6" number="6" />
-					</div>
-					<div>
-						<Songs title="song7" number="7" />
-					</div>
-					<div>
-						<Songs title="song8" number="8" />
-					</div>
-					<div>
-						<Songs title="song9" number="9" />
-					</div>
-					<div>
-						<Songs title="song10" number="10" />
-					</div>
-					<div>
-						<Songs title="song11" number="11" />
-					</div>
-					<div>
-						<Songs title="song12" number="12" />
-					</div>
-					<div>
-						<Songs title="song13" number="13" />
-					</div>
+				<ol className="container-fluid" id="list">
+					{track.map(songDetails => {
+						return <li key={songDetails}>{songDetails.name}</li>;
+					})}
 				</ol>
 			</div>
 			<div className="row control text-white justify-content-center p-4">
