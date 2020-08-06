@@ -15,7 +15,7 @@
 }
 
 .songbox{
-    border: solid 1px #808080;
+    border-top: solid 1px #808080;
     list-style-position: inside;
 }
 
@@ -30,3 +30,8 @@
 .num-wrapper{
     width: 4rem;
 }
+
+.track:hover {
+    background: rgb(105, 105, 105);
+}
+
