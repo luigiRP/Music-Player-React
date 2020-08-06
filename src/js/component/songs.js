@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 
 export default function Songs(props) {
 	function playAudio() {
-		let audio = document.queryselector("#track");
+		let audio = document.querySelector("#track");
+		console.log("hello");
 		audio.play();
 	}
 	return (

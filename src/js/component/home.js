@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Songs from "./songs";
 
 //create your first component
@@ -10,35 +10,45 @@ export function Home() {
 			</div>
 			<div className="row player text-white">
 				<ol className="container-fluid">
-					<Songs title="song1" number="1" />
-					<Songs title="song2" number="2" />
-					<Songs title="song3" number="3" />
-
-					<Songs title="song4" number="4" />
-
-					<Songs title="song5" number="5" />
-
-					<Songs title="song6" number="6" />
-
-					<Songs title="song7" number="7" />
-
-					<Songs title="song8" number="8" />
-
-					<Songs title="song9" number="9" />
-
-					<Songs title="song10" number="10" />
-
-					<Songs title="song11" number="11" />
-
-					<Songs title="song12" number="12" />
-
-					<Songs title="song13" number="13" />
-
-					<Songs title="song14" number="14" />
-
-					<Songs title="song15" number="15" />
-
-					<Songs title="song16" number="16" />
+					<div>
+						<Songs title="song1" number="1" />
+					</div>
+					<div>
+						<Songs title="song2" number="2" />
+					</div>
+					<div>
+						<Songs title="song3" number="3" />
+					</div>
+					<div>
+						<Songs title="song4" number="4" />
+					</div>
+					<div>
+						<Songs title="song5" number="5" />
+					</div>
+					<div>
+						<Songs title="song6" number="6" />
+					</div>
+					<div>
+						<Songs title="song7" number="7" />
+					</div>
+					<div>
+						<Songs title="song8" number="8" />
+					</div>
+					<div>
+						<Songs title="song9" number="9" />
+					</div>
+					<div>
+						<Songs title="song10" number="10" />
+					</div>
+					<div>
+						<Songs title="song11" number="11" />
+					</div>
+					<div>
+						<Songs title="song12" number="12" />
+					</div>
+					<div>
+						<Songs title="song13" number="13" />
+					</div>
 				</ol>
 			</div>
 			<div className="row control text-white justify-content-center p-4">
