@@ -33,6 +33,8 @@ export function Home() {
 		}
 	}
 
+	function fastForward() {}
+
 	useEffect(() => {
 		const Play = async () => {
 			let response = await fetch(
@@ -55,6 +57,7 @@ export function Home() {
 			</audio>
 
 			<div className="row player text-white">
+				<h1 id="ad" />
 				<ol className="container-fluid mb-0" id="list">
 					{track.map((songDetails, index) => {
 						return (
@@ -84,8 +87,12 @@ export function Home() {
 					}}>
 					<i className="fa fa-play-circle" aria-hidden="true" />
 				</button>
-				<button className="btn btn-primary">
-					<i className="fa fa-step-forward" aria-hidden="true" />
+				<button
+					className="btn btn-primary"
+					onClick={() => {
+						fastForward();
+					}}>
+					><i className="fa fa-step-forward" aria-hidden="true" />
 				</button>
 			</div>
 		</div>
