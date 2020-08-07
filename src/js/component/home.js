@@ -9,7 +9,7 @@ export function Home() {
 	function playTrack(track) {
 		let button = document.querySelector("#playOrPause");
 		let songUrl = "https://assets.breatheco.de/apis/sound/".concat(track);
-		button.innerHTML = `<i class="far fa-pause-circle"></i>`;
+		button.innerHTML = '<i class="far fa-pause-circle"></i>';
 		setPlaying(true);
 		let audio = document.querySelector("#track");
 		let source = document.querySelector("#trackSource");
@@ -33,7 +33,35 @@ export function Home() {
 		}
 	}
 
-	function fastForward() {}
+	function fastForward() {
+		let audio = document.querySelector("#track");
+		let source = document.querySelector("#trackSource");
+		let songUrl = "https://assets.breatheco.de/apis/sound/";
+		let random;
+		for (let i = 0; i < track.length; i++) {
+			if (songUrl.concat(track[i]["url"]) == source.src) {
+				random = songUrl.concat(track[i + 1]["url"]);
+			}
+		}
+		source.src = random;
+		audio.load();
+		audio.play();
+	}
+
+	function backBackwards() {
+		let audio = document.querySelector("#track");
+		let source = document.querySelector("#trackSource");
+		let songUrl = "https://assets.breatheco.de/apis/sound/";
+		let random;
+		for (let i = 0; i < track.length; i++) {
+			if (songUrl.concat(track[i]["url"]) == source.src) {
+				random = songUrl.concat(track[i - 1]["url"]);
+			}
+		}
+		source.src = random;
+		audio.load();
+		audio.play();
+	}
 
 	useEffect(() => {
 		const Play = async () => {
@@ -48,7 +76,7 @@ export function Home() {
 	}, []);
 
 	return (
-		<div className="container-fluid">
+		<div className="container-fluid song-list">
 			<div className="row bar text-white justify-content-center p-3 font-weight-bold">
 				<h1>RICH MUSIC PLAYER</h1>
 			</div>
@@ -57,11 +85,11 @@ export function Home() {
 			</audio>
 
 			<div className="row player text-white">
-				<h1 id="ad" />
 				<ol className="container-fluid mb-0" id="list">
 					{track.map((songDetails, index) => {
 						return (
 							<li
+								key={index}
 								className="songbox row p-2 d-flex align-items-center track"
 								onClick={() => {
 									playTrack(songDetails.url);
@@ -76,7 +104,11 @@ export function Home() {
 				</ol>
 			</div>
 			<div className="row control text-white justify-content-center p-4 fixed-bottom">
-				<button className="btn btn-primary">
+				<button
+					className="btn btn-primary"
+					onClick={() => {
+						backBackwards();
+					}}>
 					<i className="fa fa-step-backward" aria-hidden="true" />
 				</button>
 				<button
@@ -92,7 +124,7 @@ export function Home() {
 					onClick={() => {
 						fastForward();
 					}}>
-					><i className="fa fa-step-forward" aria-hidden="true" />
+					<i className="fa fa-step-forward" aria-hidden="true" />
 				</button>
 			</div>
 		</div>
